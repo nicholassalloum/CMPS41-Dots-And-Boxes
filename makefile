@@ -16,7 +16,10 @@ game.o: game.c game.h board.h
 board.o: board.c board.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-.PHONY: clean gdb valgrind
+.PHONY: run clean gdb valgrind
+
+run: $(OUTPUT)
+	./$(OUTPUT)
 
 clean:
 	@rm -rf *.o $(OUTPUT)
