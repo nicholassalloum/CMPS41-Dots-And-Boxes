@@ -111,5 +111,26 @@ int is_full() {
     return 1;
 }
 
+int is_valid_move(int r1, int c1, int r2, int c2) {
+    if(r1 == r2 && abs(c1 - c2) == 1) {
+        int c = (c1 < c2) ? c1 : c2;
+        return !h[r1][c];
+    }
+    else if(c1 == c2 && abs(r1 - r2) == 1) {
+        int r = (r1 < r2) ? r1 : r2;
+        return !v[r][c1];
+    }
+    return 0;
+}
+
+int count_sides(int i, int j) {
+    int count = 0;
+    if(h[i][j]) count++;
+    if(h[i+1][j]) count++;
+    if(v[i][j]) count++;
+    if(v[i][j+1]) count++;
+    return count;
+}
+
 int get_scoreA() { return scoreA; }
 int get_scoreB() { return scoreB; }

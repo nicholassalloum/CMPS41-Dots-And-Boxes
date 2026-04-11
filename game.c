@@ -1,21 +1,37 @@
 #include <stdio.h>
 #include "game.h"
 #include "board.h"
+#include "bot.h"
 
 void start_game() {
+
+    
     char player = 'A';
 
     init_board();
 
+    int mode;
+    printf("1. Player vs Player\n2. Player vs Bot\nChoose mode: ");
+    scanf("%d", &mode);
+
     while(!is_full()) {
         print_board();
 
-        printf("Player %c's turn. Enter the row and column of the first dot (e.g., A0 -> 0 0) and second dot:\n", player);
+        int res;
 
-        int r1,c1,r2,c2;
-        scanf("%d %d %d %d", &r1, &c1, &r2, &c2);
+        if(mode == 2 && player == 'B') {
+        // BOT TURN
+            printf("Player %c's turn. Enter the row and column of the first dot (e.g., A0 -> 0 0) and second dot:\n", player);
+            res = bot_move();   // bot plays automatically
+        } else {
+            // HUMAN TURN (UNCHANGED TEXT)
+            printf("Player %c's turn. Enter the row and column of the first dot (e.g., A0 -> 0 0) and second dot:\n", player);
 
-        int res = make_move(r1,c1,r2,c2,player);
+            int r1,c1,r2,c2;
+            scanf("%d %d %d %d", &r1, &c1, &r2, &c2);
+
+            res = make_move(r1,c1,r2,c2,player);
+    }
 
         if(res == -1) {
             printf("Invalid move. Try again.\n");

@@ -11,5 +11,6 @@ int is_full();
 
 int get_scoreA();
 int get_scoreB();
-
+int is_valid_move(int r1, int c1, int r2, int c2);
+int count_sides(int i, int j);
 #endif
