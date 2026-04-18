@@ -1,4 +1,4 @@
-SOURCES = main.c game.c board.c
+SOURCES = main.c game.c board.c bot.c
 OBJECTS = $(SOURCES:.c=.o)
 CC = gcc
 CFLAGS = -Wall -g
@@ -14,6 +14,9 @@ game.o: game.c game.h board.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 board.o: board.c board.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+bot.o: bot.c bot.h board.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: run clean gdb valgrind
